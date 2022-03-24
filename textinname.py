@@ -1,7 +1,8 @@
 from estnltk import Text
 import unicodedata as ud
+# ãèøćĒķ Eesti õäöüzžwšsfxy
 
-selectedname = "ãèøćĒķ Eesti õäöüzžwšsfxy"
+selectedname = "Tõ%re Kartul OÜ"
 OY = ["OÜ", "osaühing", "Osaühing"]
 TY = ["TÜ", "täisühing", "Täisühing"]
 UY = ["UÜ", "usaldusühing", "Usaldusühing"]
@@ -68,25 +69,19 @@ def wordsinname(selectedname, TYPES):
 
 # checks if the name is written in latin alphabet NB! includes all latin characters, incl. special chars like ãèø
 def alphabet(selectedname, TYPES):
-    latin_letters= {}
-
-    def is_latin(uchr):
-        #print(ud.name(uchr))
-        try: return latin_letters[uchr]
-        except KeyError:
-            return latin_letters.setdefault(uchr, 'LATIN' in ud.name(uchr))
-
-    def only_roman_chars(unistr):
-        return all(is_latin(uchr)
-            for uchr in unistr
-            if uchr.isalpha())
+    ET_alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 'š', 'z', 'ž', 't', 'u', 'v', 'w', 'õ', 'ä', 'ö', 'ü', 'x', 'y', '1','2','3','4','5','6','7','8','9','&','-', '.', '!', '?', ',', '_', ' ']
     
-    if only_roman_chars(selectedname) == True:
-        resulttext = "Ettevõtte nimekuju on korrektne."
-    else:
-        resulttext = "§ 12(8) Ärinimi peab olema kirjutatud eesti-ladina tähestikus."
+    for char in selectedname:
+        if char.lower() not in ET_alphabet:
+            #print(char)
+            resulttext = "§ 12(8) Ärinimi peab olema kirjutatud eesti-ladina tähestikus."
+            break
+        else:
+            resulttext = "Ettevõtte nimekuju on korrektne."
+            continue
+
     return resulttext
-#tulemus = alphabet(selectedname, TYPES)
-#print(tulemus)
+tulemus = alphabet(selectedname, TYPES)
+print(tulemus)
 
 
