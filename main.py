@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from phonetic.phonetic_similarity import calculate_phon_sim
-from text.textual_similarity import calculate_text_sim
+from similarity.phonetic.phonetic_similarity import calculate_phon_sim
+from similarity.textual_similarity import calculate_text_sim
 import utils.arireg_processor as ar
 from rules.location_in_name_checker import location
-from rules.textinname import checkifempty, typeinname, wordsinname, alphabet, ET_alphabet
+from rules.textinname import wordsinname, alphabet, ET_alphabet
 from trademarks.trademark_check import et_trademark_check
+from word_filter.filter import filter_word
 
 app = FastAPI()
 ar.init_ar()
@@ -33,7 +34,7 @@ async def textual(bis_name: str):
 
 @app.post('/xsonad')
 async def bad_words(bis_name: str):
-    result, message = et_trademark_check(bis_name)
+    result, message = filter_word(bis_name)
     response = {
         'otsus': result,
         'sonum': message
