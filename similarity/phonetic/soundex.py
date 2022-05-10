@@ -1,7 +1,7 @@
 import pymorphy2
 import re
 
-from similarity.phonetic.base import BasePhoneticsAlgorithm
+from similarity.phonetic.base.base import BasePhoneticsAlgorithm
 from .config import RU_PHONEMES, RU_VOWELS, EN_VOWELS, FI_VOWELS, EE_VOWELS, RU_REPLACEMENT_VOWEL_MAP, SE_VOWELS, \
     SE_PHONEMES
 

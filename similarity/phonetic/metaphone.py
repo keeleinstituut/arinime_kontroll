@@ -1,6 +1,6 @@
 import re
 
-from similarity.phonetic.base import BasePhoneticsAlgorithm
+from similarity.phonetic.base.base import BasePhoneticsAlgorithm
 from .config import RU_PHONEMES, FI_VOWELS, RU_VOWELS, EE_VOWELS, \
     RU_REPLACEMENT_VOWEL_MAP, RU_DEAF_CONSONANTS, EE_FI_DEAF_CONSONANTS, SE_VOWELS, SE_DEAF_CONSONANTS, \
     SE_PHONEMES

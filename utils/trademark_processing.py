@@ -4,11 +4,11 @@ import pandas as pd
 import json
 
 
-ee_trademarks_path = '../data/tm_list.json'
+ee_trademarks_path = '/root/RIK_project/data/tm_list.json'
 
 def init_tm():
     if not exists(ee_trademarks_path):
-        names = extract_tm_names('../data/kaubamargid_nimed/eki_eesti_kaubamargid_20220201.xlsx')
+        names = extract_tm_names('/root/RIK_project/data/kaubamargid_nimed/eki_eesti_kaubamargid_20220201.xlsx')
         with open(ee_trademarks_path, 'w', encoding='utf-8') as file:
             #file.write("\n".join(names))
             json.dump(names, file, ensure_ascii=False)

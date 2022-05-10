@@ -2,11 +2,11 @@ from xml.dom import minidom
 from os.path import exists
 
 
-ar_path = 'RIK_project/data/ar_names_list.txt'
+ar_path = '../data/ar_names_list.txt'
 
 def init_ar():
     if not exists(ar_path):
-        names = extract_etv_names('RIK_project/data/ettevotja_rekvisiidid_2022-01-26.xml')
+        names = extract_etv_names('data/ettevotja_rekvisiidid_2022-01-26.xml')
         with open(ar_path, 'w') as file:
             file.write("\n".join(names))
 

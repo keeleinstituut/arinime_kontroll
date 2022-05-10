@@ -2,7 +2,7 @@ from abc import abstractmethod
 
 import editdistance
 
-from similarity.phonetic.base import BasePhoneticsAlgorithm
+from similarity.phonetic.base.base import BasePhoneticsAlgorithm
 from .metaphone import Metaphone
 from .soundex import Soundex
 
