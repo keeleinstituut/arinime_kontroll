@@ -1,5 +1,6 @@
 import nltk
 
+
 def iscollection(obj):
     col = getattr(obj, '__getitem__', False)
     val = False if (not col) else True
@@ -20,6 +21,7 @@ def enc(str):
 
 def dec(str):
     return str.decode('ascii', 'ignore')
+
 
 def morfer(word):
     return

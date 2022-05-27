@@ -46,7 +46,7 @@ def location(selectedname):
 
     breakflag = False
     
-    with open('data/placenames/kohanimed-puhas.csv', 'r', newline='') as file_r:
+    with open('RIK_project/data/placenames/kohanimed.csv', 'r', newline='') as file_r:
         reader = csv.reader(file_r, delimiter=',')
         #counter = 0
         for row in reader:

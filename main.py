@@ -12,8 +12,8 @@ ar.init_ar()
 
 
 @app.get('/')
-def get_programming_languages():
-    return {'Message': "Ärinimekontroll dev-server 1 TEST"}
+def get_index():
+    return {'Message': "Ärinimekontroll {}-server {}".format()}
 
 
 @app.post('/foneetiline')

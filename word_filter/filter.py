@@ -1,14 +1,14 @@
 from fuzzysearch import find_near_matches
-from .helper import morfer
+#from helper import morfer
 
 
-def morph_expand(word_list):
-    return [morfer(x) for x in word_list]
+#def morph_expand(word_list):
+#    return [morfer(x) for x in word_list]
 
 
 def get_list(l_type, lang, filename):
     word_list = open(f"data/{l_type}/{lang}/{filename}.csv").read().split()
-    word_list = morph_expand(word_list)
+    #word_list = morph_expand(word_list)
     return word_list
 
 
