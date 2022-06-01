@@ -9,7 +9,9 @@ def et_trademark_check(bis_name, bis_domain):
     tms = [x['tm'] for x in et_trademarks]
     cls = [x['class'] for x in et_trademarks]
 
-    if bis_name in tms:
+    tms = list(map(lambda x: str(x).lower(), tms))
+    
+    if bis_name.lower() in tms:
         if bis_domain in cls[tms.index(bis_name)]:
             result = False
             message = 'Valitud tegevusalal on kaubamärk kaitstud'
