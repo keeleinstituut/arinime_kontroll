@@ -45,6 +45,7 @@ async def check_bad_words(bis_name: str):
     result, message = filter_word(bis_name)
     response = {
         'otsus': result,
+        'sonum': message
     }
     return response
 
@@ -60,7 +61,8 @@ def get_bad_words():
 async def trademark(bis_name: str, bis_domain: str):
     result, message = et_trademark_check(bis_name, bis_domain)
     response = {
-        'otsus': result
+        'otsus': result,
+        'sonum': message
     }
 
     return response
@@ -70,7 +72,6 @@ async def trademark(bis_name: str, bis_domain: str):
 async def location_rule(bis_name: str):
     response = {
         'otsus': location(bis_name)
-
     }
     return response
 
@@ -79,7 +80,6 @@ async def location_rule(bis_name: str):
 async def gov_word_rule(bis_name: str):
     response = {
         'otsus': wordsinname(bis_name)
-
     }
     return response
 
@@ -88,7 +88,6 @@ async def gov_word_rule(bis_name: str):
 async def alphabet_rule(bis_name: str):
     response = {
         'otsus': alphabet(bis_name)
-
     }
     return response
 
