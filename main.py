@@ -6,14 +6,22 @@ from rules.location_in_name_checker import location
 from rules.textinname import wordsinname, alphabet, ET_alphabet
 from trademarks.trademark_check import et_trademark_check
 from word_filter.filter import filter_word
+from word_filter.word_list_handler import get_list
+import configparser
 
-app = FastAPI()
+config = configparser.RawConfigParser()
+config.read('/root/RIK_project/server_conf')
+server_info = dict(config.items('server_info'))
+
+app = FastAPI(
+    title="Ärinimekontroll - {}-server {}".format(server_info['server_name'], server_info['server_number']),
+)
 ar.init_ar()
 
 
 @app.get('/')
 def get_index():
-    return {'Message': "Ärinimekontroll {}-server {}".format()}
+    return {'Message': "Ärinimekontroll {}-server {}".format(server_info['server_name'], server_info['server_number'])}
 
 
 @app.post('/foneetiline')
@@ -33,21 +41,26 @@ async def textual(bis_name: str):
 
 
 @app.post('/xsonad')
-async def bad_words(bis_name: str):
+async def check_bad_words(bis_name: str):
     result, message = filter_word(bis_name)
     response = {
         'otsus': result,
-        'sonum': message
     }
     return response
+
+@app.get('/kuva_xsonad')
+def get_bad_words():
+    return {
+            'hall_nimekiri': get_list('greylists', 'est'),
+            'must_nimekiri': get_list('blacklists', 'est')
+    }
 
 
 @app.post('/kaubamargid')
 async def trademark(bis_name: str, bis_domain: str):
     result, message = et_trademark_check(bis_name, bis_domain)
     response = {
-        'otsus': result,
-        'sonum': message
+        'otsus': result
     }
 
     return response
@@ -56,8 +69,7 @@ async def trademark(bis_name: str, bis_domain: str):
 @app.post('/kohanimi')
 async def location_rule(bis_name: str):
     response = {
-        'otsus': location(bis_name),
-        'sonum': location(bis_name)
+        'otsus': location(bis_name)
 
     }
     return response
@@ -66,8 +78,7 @@ async def location_rule(bis_name: str):
 @app.post('/riiksona')
 async def gov_word_rule(bis_name: str):
     response = {
-        'otsus': wordsinname(bis_name),
-        'sonum': wordsinname(bis_name)
+        'otsus': wordsinname(bis_name)
 
     }
     return response
@@ -76,8 +87,7 @@ async def gov_word_rule(bis_name: str):
 @app.post('/t2hestik')
 async def alphabet_rule(bis_name: str):
     response = {
-        'otsus': alphabet(bis_name),
-        'sonum': alphabet(bis_name)
+        'otsus': alphabet(bis_name)
 
     }
     return response
@@ -85,4 +95,4 @@ async def alphabet_rule(bis_name: str):
 
 @app.get('/t2hestik')
 def get_alphabet():
-    return {'alphabet': ET_alphabet}
+    return {'lubatud symbolid': ET_alphabet}
