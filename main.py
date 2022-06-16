@@ -7,11 +7,21 @@ from rules.textinname import wordsinname, alphabet, ET_alphabet
 from trademarks.trademark_check import et_trademark_check
 from word_filter.filter import filter_word
 from word_filter.word_list_handler import get_list
+from final_score.checker import name_check
 import configparser
+
+local_flag = False
 
 config = configparser.RawConfigParser()
 config.read('/root/RIK_project/server_conf')
 server_info = dict(config.items('server_info'))
+
+#for local testing
+if local_flag:
+    server_info = {
+        'server_name': 'local',
+        'server_number': '1'
+    }
 
 app = FastAPI(
     title="Ärinimekontroll - {}-server {}".format(server_info['server_name'], server_info['server_number']),
@@ -22,6 +32,17 @@ ar.init_ar()
 @app.get('/')
 def get_index():
     return {'Message': "Ärinimekontroll {}-server {}".format(server_info['server_name'], server_info['server_number'])}
+
+@app.post('/ärinime_kontroll')
+def all_in_check(bis_name: str, bis_domain: str):
+    skoor, otsus, allikas = name_check(bis_name, bis_domain)
+    response = {
+        'tõenäosus_skoor': skoor,
+        'otsus': otsus,
+        'kontroll_moodul': allikas
+    }
+    return response
+
 
 
 @app.post('/foneetiline')

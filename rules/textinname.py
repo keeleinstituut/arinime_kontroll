@@ -63,26 +63,23 @@ def wordsinname(selectedname):
     flattext = [item for sublist in resulttext for item in sublist]
     notallowed_list = ['Eesti', 'riik', 'vald', 'linn']
     if any(word in flattext for word in notallowed_list):
-        resulttext = "§ 12(6) Sõnu «riigi» või «linna» või «valla» või muid riigi või kohaliku omavalitsusüksuse osalusele viitavaid sõnu võib äriühingu ärinimes kasutada ainult siis, kui riigile või kohalikule omavalitsusele kuulub üle poole ühingu osadest või aktsiatest." 
+        resulttext = "§ 12(6) Sõnu «riigi» või «linna» või «valla» või muid riigi või kohaliku omavalitsusüksuse osalusele viitavaid sõnu võib äriühingu ärinimes kasutada ainult siis, kui riigile või kohalikule omavalitsusele kuulub üle poole ühingu osadest või aktsiatest."
+        return False, resulttext
     else:
         resulttext = "Ettevõtte nimekuju on korrektne."
-    return resulttext
+        return True, resulttext
+
 #tulemus = wordsinname(selectedname, TYPES)
 #print(tulemus)
 
 # checks if the name is written in latin alphabet NB! includes all latin characters, incl. special chars like ãèø
 def alphabet(selectedname):
-
+    resulttext = "Ettevõtte nimekuju on korrektne."
     for char in selectedname:
         if char.lower() not in ET_alphabet:
-            #print(char)
             resulttext = "§ 12(8) Ärinimi peab olema kirjutatud eesti-ladina tähestikus."
-            break
-        else:
-            resulttext = "Ettevõtte nimekuju on korrektne."
-            continue
-
-    return resulttext
+            return False, resulttext
+    return True, resulttext
 
 
 
