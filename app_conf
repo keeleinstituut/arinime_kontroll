@@ -1,1 +1,27 @@
-[m22rused]
+# phonetic
+Text: Valitud ärinimi on kõlaliselt liiga sarnane järgmis(te) varasemalt registreeritud ärinime(de)ga: {bsnames}
+Law: ÄS § 11.(2) Äriühingu ärinimi peab olema selgesti eristatav teistest Eestis äriregistrisse kantud ärinimedest.
+
+# textual
+Text: Valitud ärinimi on kirjapildilt liiga sarnae järgmis(te) varasemalt registreeritud ärinime(de)ga: {bsnames}
+Law: ÄS § 11.(2) Äriühingu ärinimi peab olema selgesti eristatav teistest Eestis äriregistrisse kantud ärinimedest.
+
+# check_bad_words
+Text: Valitud ärinimi sisaldab avalikku keelekasutusse mittesobivaid sõnu.
+Law: ÄS § 12.(2) Ärinimi ei või olla vastuolus heade kommetega.
+
+# trademark
+Text: Valitud kaubamärk on selles tegevusvaldkonnas kaitstud. \n{trademarks}
+Law: ÄS § 12.(3) Ärinimes ei tohi kasutada Eestis kaubamärgina kaitstavat sõnalist, tähelist või numbrilist tähist või nende kombinatsiooni ilma kaubamärgi omaniku notariaalselt kinnitatud nõusolekuta, välja arvatud juhul, kui ettevõtja tegutseb tegevusaladel, mille suhtes kaubamärk ei ole kaitstud. Nõusolekule kohaldatakse käesoleva seadustiku § 33 lõiget 11. \nÄS § 12.(3^1) Isikul, kellel ei ole geograafilise tähise kasutamise õigust, on keelatud kasutada ärinimes registreeritud geograafilist tähist, välja arvatud juhul, kui ta tegutseb tegevusalal, mille suhtes geograafiline tähis ei ole kaitstud.
+
+# location_rule
+Text: Valitud ärinimes sisaldub kohanimi {location}. 
+Law: ÄS § 12.(5) Kui ärinimi lisaks äriühingule viitavale täiendile sisaldab riigi, haldusüksuse või muu koha nime, peab ärinimi sisaldama riigi, haldusüksuse või muu koha nimest eristavat täiendit. \nÄS § 12.(6) Ärinimes ei või kasutada riigi või kohaliku omavalitsuse organite ja asutuste nimetusi. \nÄS § 8.(2) Füüsilisest isikust talupidaja ärinimi ei pea sisaldama ettevõtja ees- ja perekonnanime juhul, kui ärinimes sisaldub talu nimi.
+
+# gov_word_rule
+Text: Valitud ärinimi sisaldab sõna {word}.
+Law: ÄS  § 12.(4) Vabariigi Valitsus võib kehtestada piiranguid sõna «Eesti» kasutamisele ärinimes kõikides ühendites ja võõrkeelsetes vastetes, välja arvatud välismaa äriühingu filiaali nimes vastavalt käesoleva seadustiku § 387 punktis 1 sätestatule. \nÄS § 12.(6) Sõnu «riigi» või «linna» või «valla» või muid riigi või kohaliku omavalitsusüksuse osalusele viitavaid sõnu võib äriühingu ärinimes kasutada ainult siis, kui riigile või kohalikule omavalitsusele kuulub üle poole ühingu osadest või aktsiatest.
+
+# alphabet_rule
+Text: Valitud ärinimi sisaldab keelatud sümboleid.
+Law: ÄS § 12.(8) Ärinimi peab olema kirjutatud eesti-ladina tähestikus.
