@@ -13,7 +13,7 @@ import configparser
 local_flag = False
 
 config = configparser.RawConfigParser()
-config.read('/root/RIK_project/server_conf')
+config.read('server_conf')
 server_info = dict(config.items('server_info'))
 
 #for local testing
@@ -80,10 +80,10 @@ def get_bad_words():
 
 @app.post('/kaubamargid')
 async def trademark(bis_name: str, bis_domain: str):
-    result, message = et_trademark_check(bis_name, bis_domain)
+    result, message, collect_trademarks = et_trademark_check(bis_name, bis_domain)
     response = {
         'otsus': result,
-        'sonum': message
+        'sonum': message, collect_trademarks
     }
 
     return response
