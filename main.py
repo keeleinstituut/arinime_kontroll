@@ -10,18 +10,10 @@ from word_filter.word_list_handler import get_list
 from final_score.checker import name_check
 import configparser
 
-local_flag = False
 
 config = configparser.RawConfigParser()
 config.read('server_conf')
 server_info = dict(config.items('server_info'))
-
-#for local testing
-if local_flag:
-    server_info = {
-        'server_name': 'local',
-        'server_number': '1'
-    }
 
 app = FastAPI(
     title="Ärinimekontroll - {}-server {}".format(server_info['server_name'], server_info['server_number']),
@@ -83,7 +75,7 @@ async def trademark(bis_name: str, bis_domain: str):
     result, message, collect_trademarks = et_trademark_check(bis_name, bis_domain)
     response = {
         'otsus': result,
-        'sonum': message, collect_trademarks
+        'sonum': (message, collect_trademarks)
     }
 
     return response

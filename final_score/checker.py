@@ -25,7 +25,7 @@ def name_check(bis_name, bis_domain):
         result_message += filter_msg + '; '
         module_name += 'Filter; '
 
-    trademark_res, trademark_msg = et_trademark_check(bis_name, bis_domain)
+    trademark_res, trademark_msg, collected_trademarks = et_trademark_check(bis_name, bis_domain)
     if not trademark_res:
         result_message += trademark_msg + '; '
         module_name += 'Kaubamärk; '

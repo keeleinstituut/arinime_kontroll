@@ -33,5 +33,3 @@ def extract_tm_names(xml_path):
 
 
 init_tm()
-
-
