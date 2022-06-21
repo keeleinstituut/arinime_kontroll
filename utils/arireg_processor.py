@@ -21,7 +21,7 @@ def strip_stopwords(trg_name: str):
     trg_name = trg_name.lower()
     for sw in stopwords:
         if sw in trg_name:
-            return trg_name.replace(sw, '')
+            return trg_name.replace(sw, '').strip()
     return trg_name
 
 

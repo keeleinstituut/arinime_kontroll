@@ -80,10 +80,10 @@ def get_bad_words():
 
 @app.post('/kaubamargid')
 async def trademark(bis_name: str, bis_domain: str):
-    result, message, collect_trademarks = et_trademark_check(bis_name, bis_domain)
+    result, message = et_trademark_check(bis_name, bis_domain)
     response = {
         'otsus': result,
-        'sonum': message, collect_trademarks
+        'sonum': message
     }
 
     return response

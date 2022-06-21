@@ -23,9 +23,9 @@ def et_trademark_check(bis_name, bis_domain):
 
     if len(collect_trademarks) > 0:
         result = False
-        message = 'Valitud tegevusalal on kaubamärk kaitstud'
+        message = 'Valitud tegevusalal on kaubamärk kaitstud:' + str(collect_trademarks)
 
-    return result, message, collect_trademarks
+    return result, message
 
 #if __name__ == "__main__":
 #    test_name = 'nublu'
