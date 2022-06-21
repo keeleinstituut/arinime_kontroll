@@ -1,3 +1,4 @@
+from gc import collect
 from pydantic import conint
 import utils.trademark_processing as tp
 
@@ -23,9 +24,9 @@ def et_trademark_check(bis_name, bis_domain):
 
     if len(collect_trademarks) > 0:
         result = False
-        message = 'Valitud tegevusalal on kaubamärk kaitstud:' + str(collect_trademarks)
+        message = 'Valitud tegevusalal on kaubamärk kaitstud'
 
-    return result, message
+    return result, message, collect_trademarks
 
 #if __name__ == "__main__":
 #    test_name = 'nublu'
