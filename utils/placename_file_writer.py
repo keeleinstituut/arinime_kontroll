@@ -1,15 +1,16 @@
 # extracts placenames from gml (xml) file
-
+import os
+from config.definitions import DATA_DIR
 from bs4 import BeautifulSoup
 import csv
  
-with open('../data/placenames\eesti-kohanimed.gml', 'r') as f:
+with open(os.path.join(DATA_DIR, 'placenames', 'eesti-kohanimed.gml'), 'r') as f:
     data = f.read()
  
 Bs_data = BeautifulSoup(data, "xml")
 placenames = Bs_data.find_all('text')
 
-f = open('../data/placenames/eestikohanimed.csv', 'w', encoding='UTF8', newline='')
+f = open(os.path.join(DATA_DIR, 'placenames', 'eestikohanimed.csv'), 'w', encoding='UTF8', newline='')
 writer = csv.writer(f)
 print(type(placenames))
 

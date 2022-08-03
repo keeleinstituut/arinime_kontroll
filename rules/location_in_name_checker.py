@@ -1,3 +1,6 @@
+
+import os
+from config.definitions import DATA_DIR
 import csv
 from unittest import result
 from estnltk import Text
@@ -45,7 +48,7 @@ def location(selectedname):
 
     breakflag = False
 
-    with open('RIK_project/data/placenames/kohanimed.csv', 'r', newline='') as file_r:
+    with open(os.path.join(DATA_DIR, 'placenames', 'kohanimed.csv'), 'r', newline='') as file_r:
         reader = csv.reader(file_r, delimiter=',')
         # counter = 0
         for row in reader:

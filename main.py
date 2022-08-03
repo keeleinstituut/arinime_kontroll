@@ -9,10 +9,12 @@ from word_filter.filter import filter_word
 from word_filter.word_list_handler import get_list
 from final_score.checker import name_check
 import configparser
+import os
+from config.definitions import ROOT_DIR
 
 
 config = configparser.RawConfigParser()
-config.read('server_conf')
+config.read(os.path.join(ROOT_DIR, 'config', 'server_conf'))
 server_info = dict(config.items('server_info'))
 
 app = FastAPI(
@@ -26,15 +28,16 @@ def get_index():
     return {'Message': "Ärinimekontroll {}-server {}".format(server_info['server_name'], server_info['server_number'])}
 
 @app.post('/ärinime_kontroll')
-def all_in_check(bis_name: str, bis_domain: str):
-    skoor, otsus, allikas = name_check(bis_name, bis_domain)
+def all_in_check(bis_name: str, bis_domain: str, active_modules: str = 'A', pho_thr: int = 90, txt_thr: int = 75):
+    skoor, message, allikas, pho_names, txt_names = name_check(bis_name, bis_domain, active_modules, pho_thr, txt_thr)
     response = {
-        'tõenäosus_skoor': skoor,
-        'otsus': otsus,
-        'kontroll_moodul': allikas
+        'üldine tõenäosus skoor': skoor,
+        'teade': message,
+        'kontroll_moodul': allikas,
+        'foneetiliselt sarnased nimed': pho_names,
+        'tekstiliselt sarnased nimed': txt_names
     }
     return response
-
 
 
 @app.post('/foneetiline')

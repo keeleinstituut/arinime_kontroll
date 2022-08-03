@@ -1,11 +1,12 @@
 # Cleans csv-file of unneccessary commas, parentheses, numberts, spaces at the beginning of name etc.
 # Every placename is taken to newline
-
+import os
+from config.definitions import DATA_DIR
 import re
 import csv
 
 
-with open('../data/placenames/eestikohanimed.csv', 'r') as file_r, open('../data/placenames\kohanimed2.csv', 'w', newline='') as file_w:
+with open(os.path.join(DATA_DIR, 'placenames', 'eestikohanimed.csv'), 'r') as file_r, open(os.path.join(DATA_DIR, 'placenames', 'kohanimed2.csv'), 'w', newline='') as file_w:
     writer = csv.writer(file_w)
     for line in file_r:
         if len(line) > 1:
